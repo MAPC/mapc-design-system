@@ -15,12 +15,12 @@ const Template: Story<FooterProps> = (args) => <Footer {...args} />;
 
 export const HousingSubmarket = Template.bind({});
 HousingSubmarket.args = {
-  backgroundColor: 'rebeccapurple',
-  fontColor: 'white',
+  backgroundColor: '#482C78',
 };
 
 export const ZoningAtlas = Template.bind({});
 ZoningAtlas.args = {
-  backgroundColor: 'green',
-  fontColor: 'white',
+  backgroundColor: '#00613F',
+  paddingLeft: 20,
+  paddingRight: 30,
 }
