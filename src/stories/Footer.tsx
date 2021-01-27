@@ -28,7 +28,9 @@ export const Footer: React.FC<FooterProps> = ({
     flex-direction: row;
     height: 90px;
     padding: 0 ${paddingRight}px 0 ${paddingLeft}px;
-  `}>
+  `}
+  {...props}
+  >
       <a href="https://www.mapc.org/">
         <img src={mapc} alt="MAPC logo" />
       </a>
@@ -44,15 +46,6 @@ export const Footer: React.FC<FooterProps> = ({
         <a href="https://metrocommon.mapc.org/">metrocommon.mapc.org</a>
       </span>
     <nav className="footer__navigation">
-      <a href="https://twitter.com/MAPCMetroBoston">
-        <i className="fab fa-twitter icon__social" />
-      </a>
-      <a href="https://www.instagram.com/mapcmetroboston/">
-        <i className="fab fa-instagram icon__social" />
-      </a>
-      <a href="https://www.facebook.com/MAPCMetroBoston">
-        <i className="fab fa-facebook-square icon__social" />
-      </a>
     </nav>
   </footer>
 );
