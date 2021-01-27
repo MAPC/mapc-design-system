@@ -5,7 +5,7 @@ import { css } from '@emotion/react'
 import mapc from './../assets/images/mapc.svg';
 
 export interface FooterProps {
-  backgroundColor?: string;
+  backgroundColor: string;
   fontColor?: string;
   paddingLeft?: number,
   paddingRight?: number,
@@ -15,8 +15,7 @@ export const Footer: React.FC<FooterProps> = ({
   backgroundColor,
   fontColor = '#FFFFFF',
   paddingLeft = 50,
-  paddingRight = 50,
-  ...props
+  paddingRight = 50
 }) => (
   <footer css={css`
     align-items: center;
@@ -29,7 +28,6 @@ export const Footer: React.FC<FooterProps> = ({
     height: 90px;
     padding: 0 ${paddingRight}px 0 ${paddingLeft}px;
   `}
-  {...props}
   >
       <a href="https://www.mapc.org/">
         <img src={mapc} alt="MAPC logo" />

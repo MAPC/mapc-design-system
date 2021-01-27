@@ -1,26 +1,34 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookSquare, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookSquare, faTwitter, faInstagram, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+
+type Site = 'facebook' | 'twitter' | 'instagram'
 
 export interface SocialIconProps {
   color: string,
-  site: 'facebook' | 'twitter' | 'instagram',
+  site: Site
+}
+
+const siteData: {[Key in Site]: {url: string, icon: IconDefinition}} = {
+  facebook: {
+    url: "https://www.facebook.com/MAPCMetroBoston",
+    icon: faFacebookSquare,
+  },
+  twitter: {
+    url: "https://twitter.com/MAPCMetroBoston",
+    icon: faTwitter,
+  },
+  instagram: {
+    url: "https://www.instagram.com/mapcmetroboston/",
+    icon: faInstagram,
+  }
 }
 
 export const SocialIcon: React.FC<SocialIconProps> = ({ color, site }) => {
-  let icon, url;
-  if (site === 'facebook') {
-    url = 'https://www.facebook.com/MAPCMetroBoston';
-    icon = <FontAwesomeIcon icon={faFacebookSquare} color={color} />
-  } else if (site === 'twitter') {
-    url = 'https://twitter.com/MAPCMetroBoston';
-    icon = <FontAwesomeIcon icon={faTwitter} color={color} />
-  } else if (site === 'instagram') {
-    url = 'https://www.instagram.com/mapcmetroboston/';
-    icon = <FontAwesomeIcon icon={faInstagram} color={color} />
-  }
+  const { url, icon } = siteData[site];
   return (
-  <a href={url}>
-    {icon}
-  </a>
-)}
+    <a href={url}>
+      <FontAwesomeIcon color={color} icon={icon} />
+    </a>
+  )
+}
