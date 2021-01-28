@@ -1,7 +1,8 @@
-/** @jsxImportSource @emotion/react */
+/** @jsxRuntime classic */
+/** @jsx jsx */
 
 import React from 'react';
-import { css } from '@emotion/react';
+import { css, jsx } from '@emotion/react';
 import { SocialNav } from './SocialNav';
 import mapc from '../assets/images/mapc.svg';
 

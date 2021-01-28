@@ -12,6 +12,7 @@
 /build
 /lib
 /src/assets/fonts/*
+/dist
 
 # misc
 .DS_Store
