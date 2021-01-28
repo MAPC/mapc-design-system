@@ -24,11 +24,11 @@ const siteData: {[Key in Site]: {url: string, icon: IconDefinition}} = {
   }
 }
 
-export const SocialIcon: React.FC<SocialIconProps> = ({ color, site }) => {
+export const SocialIcon: React.FC<SocialIconProps> = ({ color, site, ...props }) => {
   const { url, icon } = siteData[site];
   return (
-    <a href={url}>
-      <FontAwesomeIcon color={color} icon={icon} />
+    <a href={url} {...props}>
+      <FontAwesomeIcon color={color} icon={icon} size='2x' />
     </a>
   )
 }

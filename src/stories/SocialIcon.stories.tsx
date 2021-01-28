@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { SocialIcon, SocialIconProps } from '../components/SocialIcon';
 
 export default {
-  title: 'Example/Social Icons',
+  title: 'Components/Social Icons',
   component: SocialIcon,
   argTypes: {
     color: { control: 'color' },
