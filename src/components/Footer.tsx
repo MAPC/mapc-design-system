@@ -3,7 +3,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { SocialNav } from './SocialNav';
-import mapc from './../assets/images/mapc.svg';
+import mapc from '../assets/images/mapc.svg';
 
 export interface FooterProps {
   backgroundColor: string;
