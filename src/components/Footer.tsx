@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({
         height: 90px;
         padding: 0 ${paddingRight}px 0 ${paddingLeft}px;
         margin: 0 auto;
-        max-width: ${maxWidth};
+        max-width: ${maxWidth}px;
       `}>
         <div css={css`
           display: flex;
