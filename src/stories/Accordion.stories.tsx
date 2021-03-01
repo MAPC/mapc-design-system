@@ -7,7 +7,7 @@ export default {
   component: Accordion,
   argTypes: {
     triangleColor: { control: 'color' },
-    title: { control: 'string' }
+    onClick: { action: 'clicked' }
   },
 } as Meta;
 
@@ -21,11 +21,11 @@ const Template: Story<AccordionProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Lorem Ipsum'
+  title: (<h3>Lorem Ipsum</h3>)
 };
 
 export const CustomTriangleColor = Template.bind({});
 CustomTriangleColor.args = {
   triangleColor: '#FF0000',
-  title: 'Lorem Ipsum'
+  title: (<h4>Test</h4>)
 };
