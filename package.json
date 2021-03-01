@@ -1,10 +1,14 @@
 {
   "name": "mapc-design-system",
   "author": "MAPC Digital Services",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "private": false,
   "main": "src/index.tsx",
-  "files": ["/src/index.tsx", "/src/components", "/src/assets"],
+  "files": [
+    "/src/index.tsx",
+    "/src/components",
+    "/src/assets"
+  ],
   "license": "CDDL-1.0",
   "babel": {
     "presets": [
