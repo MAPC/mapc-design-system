@@ -3,10 +3,8 @@
   "author": "MAPC Digital Services",
   "version": "0.1.7",
   "private": false,
-  "main": "index.tsx",
-  "files": [
-    "/src"
-  ],
+  "main": "src/index.tsx",
+  "files": ["/src/index.tsx", "/src/components", "/src/assets"],
   "license": "CDDL-1.0",
   "babel": {
     "presets": [
@@ -47,8 +45,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "compile": "rm -rf dist && mkdir dist && yarn autoclean && babel src/components src/assets --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__",
-    "publish:npm": "rm -rf dist && mkdir dist &&  babel src -d dist --copy-files"
+    "compile": "rm -rf dist && mkdir dist && yarn autoclean && babel src/components src/assets --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__"
   },
   "eslintConfig": {
     "extends": [
