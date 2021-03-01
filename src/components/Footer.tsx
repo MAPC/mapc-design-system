@@ -35,7 +35,6 @@ export const Footer: React.FC<FooterProps> = ({
         align-items: center;
         color: ${fontColor};
         display: flex;
-        font-family: 'Calibre', sans-serif;
         font-size: 16px;
         flex-direction: row;
         justify-content: space-between;
