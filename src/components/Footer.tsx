@@ -20,16 +20,19 @@ export const Footer: React.FC<FooterProps> = ({
   paddingLeft = 50,
   paddingRight = 50,
   maxWidth = 1366,
+  ...props
 }) => {
   const linkStyles = css`
     color: ${fontColor};
     text-decoration: none;
   `;
   return (
-    <footer css={css`
-      background-color: ${backgroundColor};
-      width: 100%;
-    `}
+    <footer
+      css={css`
+        background-color: ${backgroundColor};
+        width: 100%;
+      `}
+      {...props}
     >
       <div css={css`
         align-items: center;

@@ -13,12 +13,13 @@ const iconMargins = css`
   margin: 0 1rem;
 `;
 
-export const SocialNav: React.FC<SocialNavProps> = ({ color }) => (
+export const SocialNav: React.FC<SocialNavProps> = ({ color, ...props }) => (
   <nav
     css={css`
       display: flex;
       flex-direction: row;
     `}
+    {...props}
   >
     <SocialIcon color={color} site="twitter" css={iconMargins} />
     <SocialIcon color={color} site="instagram" css={iconMargins} />

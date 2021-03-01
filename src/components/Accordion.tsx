@@ -50,11 +50,11 @@ const accordionDividerStyle = css`
   margin: 3rem 0;
 `;
 
-export const Accordion: React.FC<AccordionProps> = ({ triangleColor, title, children }) => {
+export const Accordion: React.FC<AccordionProps> = ({ triangleColor, title, children, ...props }) => {
   const [isActive, setActive] = useState(false);
   console.log(isActive)
   return (
-    <div>
+    <div {...props}>
       <header
         css={accordionHeaderStyle}
         onClick={() => toggleVisibility(isActive, setActive)}
