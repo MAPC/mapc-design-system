@@ -3,6 +3,8 @@
   "author": "MAPC Digital Services",
   "version": "0.1.6",
   "private": false,
+  "main": "index.tsx",
+  "files": ["/src"],
   "license": "CDDL-1.0",
   "babel": {
     "presets": [
@@ -43,6 +45,7 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
+    "compile": "rm -rf dist && mkdir dist && yarn autoclean && babel src/components src/assets --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__",
     "publish:npm": "rm -rf dist && mkdir dist &&  babel src -d dist --copy-files"
   },
   "eslintConfig": {
@@ -72,5 +75,9 @@
     "@storybook/node-logger": "^6.1.15",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.15"
+  },
+  "repository": {
+    "url": "https://github.com/MAPC/mapc-design-system",
+    "type": "git"
   }
 }
