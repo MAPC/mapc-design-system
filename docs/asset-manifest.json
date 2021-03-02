@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.js": "./main.c3d8edda3915529faac5.bundle.js",
-    "main.js.map": "./main.c3d8edda3915529faac5.bundle.js.map",
-    "runtime~main.js": "./runtime~main.c3d8edda3915529faac5.bundle.js",
-    "runtime~main.js.map": "./runtime~main.c3d8edda3915529faac5.bundle.js.map",
-    "vendors~main.js": "./vendors~main.c3d8edda3915529faac5.bundle.js",
-    "vendors~main.js.map": "./vendors~main.c3d8edda3915529faac5.bundle.js.map",
+    "main.js": "./main.db24f0f32cd6f779347a.bundle.js",
+    "main.js.map": "./main.db24f0f32cd6f779347a.bundle.js.map",
+    "runtime~main.js": "./runtime~main.db24f0f32cd6f779347a.bundle.js",
+    "runtime~main.js.map": "./runtime~main.db24f0f32cd6f779347a.bundle.js.map",
+    "vendors~main.js": "./vendors~main.db24f0f32cd6f779347a.bundle.js",
+    "vendors~main.js.map": "./vendors~main.db24f0f32cd6f779347a.bundle.js.map",
     "iframe.html": "./iframe.html",
-    "static/media/mapc.b8494c38.svg": "./static/media/mapc.b8494c38.svg",
-    "vendors~main.c3d8edda3915529faac5.bundle.js.LICENSE.txt": "./vendors~main.c3d8edda3915529faac5.bundle.js.LICENSE.txt"
+    "static/media/mapc-duotone.svg": "./static/media/mapc-duotone.b8494c38.svg",
+    "static/media/mapc-fullcolor.192d955d.png": "./static/media/mapc-fullcolor.192d955d.png",
+    "static/media/mapc-semitransparent.67de706a.svg": "./static/media/mapc-semitransparent.67de706a.svg",
+    "vendors~main.db24f0f32cd6f779347a.bundle.js.LICENSE.txt": "./vendors~main.db24f0f32cd6f779347a.bundle.js.LICENSE.txt"
   },
   "entrypoints": [
-    "runtime~main.c3d8edda3915529faac5.bundle.js",
-    "vendors~main.c3d8edda3915529faac5.bundle.js",
-    "main.c3d8edda3915529faac5.bundle.js"
+    "runtime~main.db24f0f32cd6f779347a.bundle.js",
+    "vendors~main.db24f0f32cd6f779347a.bundle.js",
+    "main.db24f0f32cd6f779347a.bundle.js"
   ]
 }
