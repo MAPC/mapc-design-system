@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { css, jsx } from '@emotion/react';
 import { MetrocommonTriangle } from './MetrocommonTriangle';
 
 export interface AccordionProps {
   triangleColor?: string,
-  title: HTMLHeadingElement
+  title: ReactElement
 }
 
 function toggleVisibility(currentState: boolean, setActive: React.Dispatch<React.SetStateAction<boolean>>) {
