@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapContext } from './Map';
+import { SourceContext } from './Source';
 
 interface LayerProps {
   id: string,
@@ -11,17 +12,21 @@ interface LayerProps {
 
 export const Layer: React.FC<LayerProps> = ({ id, type, sourceLayer, paint, layout }) => (
   <MapContext.Consumer>
-    {(value) => {
-      value.map?.on('load', (e) => {
-        value.map?.addLayer({
-          id,
-          type,
-          source: 'MAPC Municipalities',
-          'source-layer': sourceLayer,
-          paint,
-        })
-      })
-      return '';
-    }}
+    {(map) => (
+      <SourceContext.Consumer>
+        {(source) => {
+          map?.on('load', (e) => {
+            map?.addLayer({
+              id,
+              type,
+              source,
+              'source-layer': sourceLayer,
+              paint,
+            })
+          })
+          return '';
+        }}
+      </SourceContext.Consumer>
+    )}
   </MapContext.Consumer>
 );

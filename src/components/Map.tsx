@@ -5,11 +5,7 @@ import React, { useEffect, useRef, useState, createContext } from 'react';
 import { css, jsx } from '@emotion/react';
 import mapboxgl from 'mapbox-gl';
 
-export type MapContextProps = {
-  map: mapboxgl.Map|null
-}
-
-export const MapContext = createContext<MapContextProps>({ map: null });
+export const MapContext = createContext<mapboxgl.Map|null>(null);
 export interface MapProps {
   container: string,
   style?: string,
@@ -47,7 +43,7 @@ export const Map: React.FC<MapProps> = ({
   }, [accessToken, center, style, container, zoom, mapRef, map])
 
   return (
-    <MapContext.Provider value={{ map }}>
+    <MapContext.Provider value={map}>
       <div
         ref={mapRef}
         id={container}

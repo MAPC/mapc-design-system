@@ -10,9 +10,9 @@ const navigation = new mapboxgl.NavigationControl();
 
 export const NavigationControl: React.FC<NavigationControlProps> = ({ position = 'bottom-right' }) => (
   <MapContext.Consumer>
-    {(value) => {
-      if (!value.map?.hasControl(navigation)) {
-        value.map?.addControl(navigation, position);
+    {(map) => {
+      if (!map?.hasControl(navigation)) {
+        map?.addControl(navigation, position);
       }
       return '';
     }}

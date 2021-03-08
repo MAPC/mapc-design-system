@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { MapContext } from './Map';
+
+export const SourceContext = createContext('')
 
 interface SourceProps {
   id: string,
@@ -7,19 +9,21 @@ interface SourceProps {
 }
 
 export const Source: React.FC<SourceProps> = ({ id, url, children }) => (
-  <MapContext.Consumer>
-    {(value) => {
-      value.map?.on('load', (e) => {
-        value.map?.addSource(id, {
-          type: 'vector',
-          url: `mapbox://${url}`,
+  <SourceContext.Provider value={id}>
+    <MapContext.Consumer>
+      {(map) => {
+        map?.on('load', (e) => {
+          map?.addSource(id, {
+            type: 'vector',
+            url: `mapbox://${url}`,
+          })
         })
-      })
-      return (
-        <React.Fragment>
-          {children}
-        </React.Fragment>
-      );
-    }}
-  </MapContext.Consumer>
+        return (
+          <React.Fragment>
+            {children}
+          </React.Fragment>
+        );
+      }}
+    </MapContext.Consumer>
+  </SourceContext.Provider>
 );
