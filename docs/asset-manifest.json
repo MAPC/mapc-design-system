@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.js": "./main.db24f0f32cd6f779347a.bundle.js",
-    "main.js.map": "./main.db24f0f32cd6f779347a.bundle.js.map",
-    "runtime~main.js": "./runtime~main.db24f0f32cd6f779347a.bundle.js",
-    "runtime~main.js.map": "./runtime~main.db24f0f32cd6f779347a.bundle.js.map",
-    "vendors~main.js": "./vendors~main.db24f0f32cd6f779347a.bundle.js",
-    "vendors~main.js.map": "./vendors~main.db24f0f32cd6f779347a.bundle.js.map",
+    "main.js": "./main.96d2e0618c474f7c65e2.bundle.js",
+    "main.js.map": "./main.96d2e0618c474f7c65e2.bundle.js.map",
+    "runtime~main.js": "./runtime~main.96d2e0618c474f7c65e2.bundle.js",
+    "runtime~main.js.map": "./runtime~main.96d2e0618c474f7c65e2.bundle.js.map",
+    "vendors~main.js": "./vendors~main.96d2e0618c474f7c65e2.bundle.js",
+    "vendors~main.js.map": "./vendors~main.96d2e0618c474f7c65e2.bundle.js.map",
     "iframe.html": "./iframe.html",
     "static/media/mapc-duotone.svg": "./static/media/mapc-duotone.b8494c38.svg",
     "static/media/mapc-fullcolor.192d955d.png": "./static/media/mapc-fullcolor.192d955d.png",
     "static/media/mapc-semitransparent.67de706a.svg": "./static/media/mapc-semitransparent.67de706a.svg",
-    "vendors~main.db24f0f32cd6f779347a.bundle.js.LICENSE.txt": "./vendors~main.db24f0f32cd6f779347a.bundle.js.LICENSE.txt"
+    "vendors~main.96d2e0618c474f7c65e2.bundle.js.LICENSE.txt": "./vendors~main.96d2e0618c474f7c65e2.bundle.js.LICENSE.txt"
   },
   "entrypoints": [
-    "runtime~main.db24f0f32cd6f779347a.bundle.js",
-    "vendors~main.db24f0f32cd6f779347a.bundle.js",
-    "main.db24f0f32cd6f779347a.bundle.js"
+    "runtime~main.96d2e0618c474f7c65e2.bundle.js",
+    "vendors~main.96d2e0618c474f7c65e2.bundle.js",
+    "main.96d2e0618c474f7c65e2.bundle.js"
   ]
 }
