@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import { MapContext } from './Map';
 
 interface NavigationControlProps {
-  position: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
+  position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 }
 
 const navigation = new mapboxgl.NavigationControl();
@@ -14,9 +14,7 @@ export const NavigationControl: React.FC<NavigationControlProps> = ({ position =
       if (!value.map?.hasControl(navigation)) {
         value.map?.addControl(navigation, position);
       }
-      return (
-        <div />
-      )
+      return '';
     }}
   </MapContext.Consumer>
 );
