@@ -1,7 +1,7 @@
 import React from 'react';
-import { Map, MapProps } from '../Map';
-import { Source }  from '../Source';
-import { Layer } from '../Layer';
+import { Map, MapProps } from '../maps/Map';
+import { Source }  from '../maps/Source';
+import { Layer } from '../maps/Layer';
 
 export const MapWithLayer: React.FC<MapProps> = () => (
   <Map container="map" accessToken="pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg">

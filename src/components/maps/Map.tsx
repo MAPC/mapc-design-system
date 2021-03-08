@@ -4,7 +4,6 @@
 import React, { useEffect, useRef, useState, createContext } from 'react';
 import { css, jsx } from '@emotion/react';
 import mapboxgl from 'mapbox-gl';
-
 export const MapContext = createContext<mapboxgl.Map|null>(null);
 export interface MapProps {
   container: string,
