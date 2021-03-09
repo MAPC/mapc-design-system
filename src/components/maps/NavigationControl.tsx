@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { MapContext } from './Map';
 
@@ -8,13 +8,21 @@ interface NavigationControlProps {
 
 const navigation = new mapboxgl.NavigationControl();
 
-export const NavigationControl: React.FC<NavigationControlProps> = ({ position = 'bottom-right' }) => (
-  <MapContext.Consumer>
-    {(map) => {
-      if (!map?.hasControl(navigation)) {
-        map?.addControl(navigation, position);
+export const NavigationControl: React.FC<NavigationControlProps> = ({ position = 'bottom-right' }) => {
+  const map = useContext(MapContext);
+  useEffect(() => {
+    if (!map?.hasControl(navigation)) {
+      map?.addControl(navigation, position);
+    }
+    return () => {
+      if (map?.hasControl(navigation)) {
+        map.removeControl(navigation);
       }
-      return '';
-    }}
-  </MapContext.Consumer>
-);
+    }
+  }, [map, position]);
+
+  return (
+    <React.Fragment />
+  );
+}
+

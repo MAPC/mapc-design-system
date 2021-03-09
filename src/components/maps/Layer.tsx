@@ -1,32 +1,37 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { MapContext } from './Map';
 import { SourceContext } from './Source';
 
 interface LayerProps {
-  id: string,
+  layerId: string,
   type: 'fill' | 'line',
   sourceLayer: string,
   paint?: {},
-  layout?: {},
 }
 
-export const Layer: React.FC<LayerProps> = ({ id, type, sourceLayer, paint, layout }) => (
-  <MapContext.Consumer>
-    {(map) => (
-      <SourceContext.Consumer>
-        {(source) => {
-          map?.on('load', (e) => {
-            map?.addLayer({
-              id,
-              type,
-              source,
-              'source-layer': sourceLayer,
-              paint,
-            })
-          })
-          return '';
-        }}
-      </SourceContext.Consumer>
-    )}
-  </MapContext.Consumer>
-);
+export const Layer: React.FC<LayerProps> = ({ layerId, type, sourceLayer, paint }) => {
+  const map = useContext(MapContext);
+  const source = useContext(SourceContext);
+
+  useEffect(() => {
+    map?.on('load', (e) => {
+      map?.on('sourcedata', (e) => {
+        if (!map?.getLayer(layerId) && map?.isSourceLoaded(source)) {
+          map?.addLayer({
+            id: layerId,
+            type,
+            source,
+            'source-layer': sourceLayer,
+            paint,
+          });
+        }
+      })
+    });
+    return () => {
+      if (map?.getLayer(layerId)) {
+        map?.removeLayer(layerId);
+      }
+    }
+  }, [layerId, map, paint, source, sourceLayer, type]);
+  return (<React.Fragment />)
+}
