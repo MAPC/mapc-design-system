@@ -1,3 +1,4 @@
+import mapboxgl from 'mapbox-gl';
 import React, { createContext, useContext, useEffect } from 'react';
 import { MapContext } from './Map';
 
@@ -8,19 +9,41 @@ interface SourceProps {
   url: string
 }
 
+function removeLayersOnSource(map: mapboxgl.Map, source: string) {
+  if (map) {
+    map.getStyle().layers?.forEach((layer: mapboxgl.Layer) => {
+      if (layer.source === source) {
+        map?.removeLayer(layer.id)
+      }
+    })
+  }
+}
+
 export const Source: React.FC<SourceProps> = ({ sourceId, url, children }) => {
   const map = useContext(MapContext);
-
   useEffect(() => {
-    map?.on('load', (e) => {
+    if (map?.loaded()) {
       map?.addSource(sourceId, {
         type: 'vector',
         url: `mapbox://${url}`
       })
-    })
+    } else {
+      map?.on('load', (e) => {
+        map?.addSource(sourceId, {
+          type: 'vector',
+          url: `mapbox://${url}`
+        })
+      })
+    }
     return () => {
-      if (map?.isSourceLoaded(sourceId)) {
+      if (map?.isStyleLoaded() && map?.getSource(sourceId)) {
+        removeLayersOnSource(map, sourceId)
         map?.removeSource(sourceId);
+        map?.off('load', (e) => {
+          map?.addSource(sourceId, {
+          type: 'vector',
+          url: `mapbox://${url}`
+        })})
       }
     }
   }, [map, sourceId, url]);

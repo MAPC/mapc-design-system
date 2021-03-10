@@ -27,7 +27,6 @@ export const Map: React.FC<MapProps> = ({
 }) => {
   const mapRef = useRef(null);
   const [map, setMap] = useState<mapboxgl.Map|null>(null);
-
   useEffect(() => {
     if (!map) {
       const mapObj = new mapboxgl.Map({
@@ -38,6 +37,11 @@ export const Map: React.FC<MapProps> = ({
         center
       });
       setMap(mapObj);
+    }
+    return () => {
+      if (map) {
+        map?.remove();
+      }
     }
   }, [accessToken, center, style, container, zoom, mapRef, map])
 
