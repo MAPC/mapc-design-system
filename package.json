@@ -3,15 +3,15 @@
   "author": "MAPC Digital Services",
   "version": "0.2.2",
   "private": false,
-  "main": "src/index.tsx",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "/src/index.tsx",
-    "/src/components",
-    "/src/assets"
+    "/dist"
   ],
   "license": "CDDL-1.0",
   "babel": {
     "presets": [
+      "react-app",
       "@babel/preset-react"
     ],
     "plugins": [
@@ -21,6 +21,36 @@
           "loose": true
         }
       ]
+    ],
+    "ignore": [
+      "./src/stories", "./src/assets"
+    ]
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -o docs -s ./src/assets",
+    "compile": "tsc && rm -rf dist && mkdir dist && NODE_ENV=production babel src --out-dir dist --extensions .ts,.tsx && mkdir -p ./dist/assets/images && cp -a ./src/assets/images ./dist/assets/"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   },
   "dependencies": {
@@ -42,33 +72,6 @@
     "react-scripts": "4.0.1",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -o docs -s ./src/assets",
-    "compile": "rm -rf dist && mkdir dist && yarn autoclean && babel src/components src/assets --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

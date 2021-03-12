@@ -8,7 +8,7 @@ import { Layer } from '../components/maps/Layer';
 import { Source } from '../components/maps/Source';
 import { Tooltip } from '../components/maps/Tooltip';
 import { MapLegend } from '../components/maps/MapLegend';
-import { data } from '../assets/WasteWaterData';
+import { data } from '../assets/data/WasteWaterData';
 
 export default {
   title: 'Maps/Basemap',
