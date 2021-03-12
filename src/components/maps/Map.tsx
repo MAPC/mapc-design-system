@@ -13,6 +13,9 @@ export interface MapProps {
   height?: string,
   center?: [number, number],
   zoom?: number,
+  minZoom?: number,
+  maxZoom?: number,
+  onClick?: (e: (mapboxgl.MapMouseEvent & mapboxgl.EventData)) => void,
 }
 
 export const Map: React.FC<MapProps> = ({
@@ -23,6 +26,9 @@ export const Map: React.FC<MapProps> = ({
   height="500px",
   center=[-70.944, 42.37],
   zoom=8.4,
+  minZoom=8,
+  maxZoom=16,
+  onClick,
   children
 }) => {
   const mapRef = useRef(null);
@@ -34,8 +40,13 @@ export const Map: React.FC<MapProps> = ({
         style,
         accessToken,
         zoom,
-        center
+        center,
+        maxZoom,
+        minZoom,
       });
+      if (onClick) {
+        mapObj.on('click', onClick);
+      }
       setMap(mapObj);
     }
     return () => {
@@ -43,7 +54,7 @@ export const Map: React.FC<MapProps> = ({
         map?.remove();
       }
     }
-  }, [accessToken, center, style, container, zoom, mapRef, map])
+  }, [accessToken, center, style, container, zoom, mapRef, map, minZoom, maxZoom, onClick])
 
   return (
     <MapContext.Provider value={map}>

@@ -1,8 +1,12 @@
 import React from 'react';
+import mapboxgl from 'mapbox-gl';
 import { Story, Meta } from '@storybook/react';
 import { Map, MapProps } from '../components/maps/Map';
 import { NavigationControl } from '../components/maps/NavigationControl';
 import { MunicipalitiesMAPC } from '../components/maps/MunicipalitiesMAPC';
+import { Layer } from '../components/maps/Layer';
+import { Source } from '../components/maps/Source';
+import { Tooltip } from '../components/maps/Tooltip';
 import { MapLegend } from '../components/maps/MapLegend';
 import { data } from '../assets/WasteWaterData';
 
@@ -38,6 +42,15 @@ const MAPCTemplate: Story<MapProps> = (args) => (
         return colorScale[2]
       }}
     />
+    <Source sourceId="Sewer lines" url="ihill.5wqorrqo">
+      <Layer layerId="Sewer line layer" type="line" sourceLayer="MAPCSewerLines2013-9tfyjn" />
+    </Source>
+    <Tooltip>
+      <React.Fragment>
+        <p>Hello world</p>
+        <p>Insert more stuff</p>
+      </React.Fragment>
+    </Tooltip>
     <MapLegend
       colorScale={sewerColors}
       title="Sewer Systems"
@@ -53,4 +66,10 @@ export const MapWithNavigation = NavTemplate.bind({});
 MapWithNavigation.args = {container: 'map', accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg'};
 
 export const MAPCLayer = MAPCTemplate.bind({});
-MAPCLayer.args = {container: 'map', accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg'};
+MAPCLayer.args = {
+  container: 'map',
+  accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg',
+  onClick: (e: mapboxgl.MapMouseEvent & mapboxgl.EventData) => {
+    console.log(e);
+  }
+};
