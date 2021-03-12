@@ -45,10 +45,10 @@ const MAPCTemplate: Story<MapProps> = (args) => (
     <Source sourceId="Sewer lines" url="ihill.5wqorrqo">
       <Layer layerId="Sewer line layer" type="line" sourceLayer="MAPCSewerLines2013-9tfyjn" />
     </Source>
-    <Tooltip>
+    <Tooltip onLayer="MAPC Munis">
       <React.Fragment>
         <p>Hello world</p>
-        <p>Insert more stuff</p>
+        <p>Insert second line</p>
       </React.Fragment>
     </Tooltip>
     <MapLegend
@@ -69,7 +69,10 @@ export const MAPCLayer = MAPCTemplate.bind({});
 MAPCLayer.args = {
   container: 'map',
   accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg',
-  onClick: (e: mapboxgl.MapMouseEvent & mapboxgl.EventData) => {
+  onClick: (e: mapboxgl.MapMouseEvent & {
+    features?: mapboxgl.MapboxGeoJSONFeature[] | undefined;
+} & mapboxgl.EventData) => {
     console.log(e);
+    console.log(e.features)
   }
 };

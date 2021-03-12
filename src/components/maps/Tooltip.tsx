@@ -4,22 +4,32 @@ import mapboxgl from 'mapbox-gl';
 import { MapContext } from './Map';
 
 interface TooltipProps {
-  children: ReactElement
+  onLayer?: string|undefined,
+  children: ReactElement,
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({ children }) => {
+export const Tooltip: React.FC<TooltipProps> = ({ onLayer, children }) => {
   const map = useContext(MapContext);
   const div = document.createElement('div');
 
   useEffect(() => {
-    map?.on('click', (e) => {
-      new mapboxgl.Popup()
-        .setLngLat(e.lngLat)
-        .setDOMContent(div)
-        .addTo(map)
-    })
+    if (onLayer) {
+      map?.on('click', onLayer, (e) => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setDOMContent(div)
+          .addTo(map)
+      })
+    } else {
+      map?.on('click', (e) => {
+        new mapboxgl.Popup()
+          .setLngLat(e.lngLat)
+          .setDOMContent(div)
+          .addTo(map)
+      })
+    }
 
-  }, [map, children, div])
+  }, [map, children, div, onLayer])
 
   return ReactDOM.createPortal(children, div);
 }

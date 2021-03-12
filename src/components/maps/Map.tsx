@@ -15,7 +15,7 @@ export interface MapProps {
   zoom?: number,
   minZoom?: number,
   maxZoom?: number,
-  onClick?: (e: (mapboxgl.MapMouseEvent & mapboxgl.EventData)) => void,
+  onClick?: (e: (mapboxgl.MapMouseEvent & { features?: mapboxgl.MapboxGeoJSONFeature[] | undefined; } & mapboxgl.EventData)) => void,
 }
 
 export const Map: React.FC<MapProps> = ({
@@ -45,7 +45,10 @@ export const Map: React.FC<MapProps> = ({
         minZoom,
       });
       if (onClick) {
-        mapObj.on('click', onClick);
+        mapObj.on('click', (e) => {
+          e.features = mapObj.queryRenderedFeatures([e.point.x, e.point.y])
+          return onClick(e);
+        });
       }
       setMap(mapObj);
     }
