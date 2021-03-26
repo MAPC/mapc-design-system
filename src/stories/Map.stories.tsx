@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Map, MapProps } from '../components/maps/Map';
 import { NavigationControl } from '../components/maps/NavigationControl';
@@ -24,48 +24,50 @@ const NavTemplate: Story<MapProps> = (args) => (
 )
 const MAPCTemplate: Story<MapProps> = (args) => {
   const [muni, setMuni] = useState('');
+  const onClick = useCallback((e) => {
+    console.log(e)
+    const clickedMuni = e.features.find(node => node.layer.id === 'MAPC Munis');
+    setMuni(clickedMuni.properties.municipal || '');
+  }, [])
   return (
-  <Map
-    {...args}
-    onClick={(e) => {
-      const clickedMuni = e.features.find(node => node.layer.id === 'MAPC Munis');
-      setMuni(clickedMuni.properties.municipal || '');
-    }}
-  >
-    <MunicipalitiesMAPC
-      type="fill"
-      layerId="MAPC Munis"
-      paint={{ 'fill-outline-color': 'white' }}
-      data={data}
-      matchOn="municipal"
-      mapColumn="sewer_flag"
-      colorScale={sewerColors}
-      choroplethFunc={(colorScale: Array<string>, value: number|string) => {
-        if (+value === 0) {
-          return colorScale[0]
-        } if (+value === 1) {
-          return colorScale[1]
-        }
-        return colorScale[2]
-      }}
-    />
-    <Source sourceId="Sewer lines" url="ihill.5wqorrqo">
-      <Layer layerId="Sewer line layer" type="line" sourceLayer="MAPCSewerLines2013-9tfyjn" />
-    </Source>
-    <Tooltip onLayer="MAPC Munis">
-      <React.Fragment>
-        <p>Hello world</p>
-        <p>{muni}</p>
-      </React.Fragment>
-    </Tooltip>
-    <MapLegend
-      colorScale={sewerColors}
-      title="Sewer Systems"
-      legendEntries={['No centralized sewer system(s)', 'Fully sewered, or nearly so', 'Partially sewered']}
-    />
-  </Map>
-)
-    }
+    <Map
+      {...args}
+      onClick={onClick}
+    >
+      <MunicipalitiesMAPC
+        type="fill"
+        layerId="MAPC Munis"
+        paint={{ 'fill-outline-color': 'white' }}
+        data={data}
+        matchOn="municipal"
+        mapColumn="sewer_flag"
+        colorScale={sewerColors}
+        choroplethFunc={(colorScale: Array<string>, value: number|string) => {
+          if (+value === 0) {
+            return colorScale[0]
+          } if (+value === 1) {
+            return colorScale[1]
+          }
+          return colorScale[2]
+        }}
+      />
+      <Source sourceId="Sewer lines" url="ihill.5wqorrqo">
+        <Layer layerId="Sewer line layer" type="line" sourceLayer="MAPCSewerLines2013-9tfyjn" />
+      </Source>
+      <Tooltip onLayer="MAPC Munis">
+        <React.Fragment>
+          <p>Hello world</p>
+          <p>{muni}</p>
+        </React.Fragment>
+      </Tooltip>
+      <MapLegend
+        colorScale={sewerColors}
+        title="Sewer Systems"
+        legendEntries={['No centralized sewer system(s)', 'Fully sewered, or nearly so', 'Partially sewered']}
+      />
+    </Map>
+  )
+}
 export const Default = Template.bind({});
 Default.args = {container: 'map', accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg'};
 
@@ -76,10 +78,4 @@ export const MAPCLayer = MAPCTemplate.bind({});
 MAPCLayer.args = {
   container: 'map',
   accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg',
-//   onClick: (e: mapboxgl.MapMouseEvent & {
-//     features?: mapboxgl.MapboxGeoJSONFeature[] | undefined;
-// } & mapboxgl.EventData) => {
-//     console.log(e);
-//     console.log(e.features)
-//   }
 };

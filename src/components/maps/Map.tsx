@@ -60,7 +60,7 @@ export const Map: React.FC<MapProps> = ({
         setMap(null);
       }
     }
-  }, [map, minZoom, maxZoom, center, style, accessToken, zoom, container])
+  }, [map, minZoom, maxZoom, center, style, accessToken, zoom, container, onClick])
 
   return (
     <MapContext.Provider value={map}>
