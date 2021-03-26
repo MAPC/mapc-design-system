@@ -1,5 +1,4 @@
-import React from 'react';
-import mapboxgl from 'mapbox-gl';
+import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Map, MapProps } from '../components/maps/Map';
 import { NavigationControl } from '../components/maps/NavigationControl';
@@ -23,8 +22,16 @@ const NavTemplate: Story<MapProps> = (args) => (
     <NavigationControl />
   </Map>
 )
-const MAPCTemplate: Story<MapProps> = (args) => (
-  <Map {...args}>
+const MAPCTemplate: Story<MapProps> = (args) => {
+  const [muni, setMuni] = useState('');
+  return (
+  <Map
+    {...args}
+    onClick={(e) => {
+      const clickedMuni = e.features.find(node => node.layer.id === 'MAPC Munis');
+      setMuni(clickedMuni.properties.municipal || '');
+    }}
+  >
     <MunicipalitiesMAPC
       type="fill"
       layerId="MAPC Munis"
@@ -48,7 +55,7 @@ const MAPCTemplate: Story<MapProps> = (args) => (
     <Tooltip onLayer="MAPC Munis">
       <React.Fragment>
         <p>Hello world</p>
-        <p>Insert second line</p>
+        <p>{muni}</p>
       </React.Fragment>
     </Tooltip>
     <MapLegend
@@ -58,7 +65,7 @@ const MAPCTemplate: Story<MapProps> = (args) => (
     />
   </Map>
 )
-
+    }
 export const Default = Template.bind({});
 Default.args = {container: 'map', accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg'};
 
@@ -69,10 +76,10 @@ export const MAPCLayer = MAPCTemplate.bind({});
 MAPCLayer.args = {
   container: 'map',
   accessToken: 'pk.eyJ1IjoiaWhpbGwiLCJhIjoiY2plZzUwMTRzMW45NjJxb2R2Z2thOWF1YiJ9.szIAeMS4c9YTgNsJeG36gg',
-  onClick: (e: mapboxgl.MapMouseEvent & {
-    features?: mapboxgl.MapboxGeoJSONFeature[] | undefined;
-} & mapboxgl.EventData) => {
-    console.log(e);
-    console.log(e.features)
-  }
+//   onClick: (e: mapboxgl.MapMouseEvent & {
+//     features?: mapboxgl.MapboxGeoJSONFeature[] | undefined;
+// } & mapboxgl.EventData) => {
+//     console.log(e);
+//     console.log(e.features)
+//   }
 };

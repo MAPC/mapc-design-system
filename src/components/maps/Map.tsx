@@ -1,10 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+/* eslint import/no-webpack-loader-syntax: off */
 
 import React, { useEffect, useRef, useState, createContext } from 'react';
 import { css, jsx } from '@emotion/react';
 import mapboxgl from 'mapbox-gl';
 export const MapContext = createContext<mapboxgl.Map|null>(null);
+
 export interface MapProps {
   container: string,
   style?: string,
@@ -32,10 +34,10 @@ export const Map: React.FC<MapProps> = ({
   children
 }) => {
   const mapRef = useRef(null);
-  const [map, setMap] = useState<mapboxgl.Map|null>(null);
+  const [map, setMap] = useState<mapboxgl.Map|null>(null)
   useEffect(() => {
     if (!map) {
-      const mapObj = new mapboxgl.Map({
+      let mapObj = new mapboxgl.Map({
         container,
         style,
         accessToken,
@@ -50,14 +52,15 @@ export const Map: React.FC<MapProps> = ({
           return onClick(e);
         });
       }
-      setMap(mapObj);
+      setMap(mapObj)
     }
     return () => {
       if (map) {
         map?.remove();
+        setMap(null);
       }
     }
-  }, [accessToken, center, style, container, zoom, mapRef, map, minZoom, maxZoom, onClick])
+  }, [map, minZoom, maxZoom, center, style, accessToken, zoom, container])
 
   return (
     <MapContext.Provider value={map}>
