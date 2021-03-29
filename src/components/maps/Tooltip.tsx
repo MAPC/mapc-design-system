@@ -1,6 +1,5 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import mapboxgl from 'mapbox-gl';
+import * as mapboxgl from 'mapbox-gl';
 import { MapContext } from './Map';
 
 interface TooltipProps {
@@ -31,5 +30,5 @@ export const Tooltip: React.FC<TooltipProps> = ({ onLayer, children }) => {
 
   }, [map, children, div, onLayer])
 
-  return ReactDOM.createPortal(children, div);
+  return <div />
 }

@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 import { css, jsx } from '@emotion/react';
-import mapboxgl from 'mapbox-gl';
+import * as mapboxgl from 'mapbox-gl';
 
 export const MapContext = React.createContext<mapboxgl.Map|null>(null);
 
