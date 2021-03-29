@@ -6,11 +6,11 @@ interface NavigationControlProps {
   position?: 'bottom-right' | 'bottom-left' | 'top-right' | 'top-left';
 }
 
-const navigation = new mapboxgl.NavigationControl();
-
 export const NavigationControl: React.FC<NavigationControlProps> = ({ position = 'bottom-right' }) => {
   const map = React.useContext(MapContext);
+
   React.useEffect(() => {
+    const navigation = new mapboxgl.NavigationControl();
     if (!map?.hasControl(navigation)) {
       map?.addControl(navigation, position);
     }
