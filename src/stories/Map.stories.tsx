@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Map, MapProps } from '../components/maps/Map';
 import { NavigationControl } from '../components/maps/NavigationControl';
@@ -24,11 +24,11 @@ const NavTemplate: Story<MapProps> = (args) => (
 )
 const MAPCTemplate: Story<MapProps> = (args) => {
   const [muni, setMuni] = useState('');
-  const onClick = useCallback((e) => {
-    console.log(e)
+  const onClick = (e) => {
     const clickedMuni = e.features.find(node => node.layer.id === 'MAPC Munis');
     setMuni(clickedMuni.properties.municipal || '');
-  }, [])
+  }
+  console.log(muni)
   return (
     <Map
       {...args}

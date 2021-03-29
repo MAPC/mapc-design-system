@@ -1,10 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-/* eslint import/no-webpack-loader-syntax: off */
 
 import React, { useEffect, useRef, useState, createContext } from 'react';
 import { css, jsx } from '@emotion/react';
 import mapboxgl from 'mapbox-gl';
+
 export const MapContext = createContext<mapboxgl.Map|null>(null);
 
 export interface MapProps {
@@ -46,12 +46,6 @@ export const Map: React.FC<MapProps> = ({
         maxZoom,
         minZoom,
       });
-      if (onClick) {
-        mapObj.on('click', (e) => {
-          e.features = mapObj.queryRenderedFeatures([e.point.x, e.point.y])
-          return onClick(e);
-        });
-      }
       setMap(mapObj)
     }
     return () => {
@@ -60,7 +54,16 @@ export const Map: React.FC<MapProps> = ({
         setMap(null);
       }
     }
-  }, [map, minZoom, maxZoom, center, style, accessToken, zoom, container, onClick])
+  }, [map, minZoom, maxZoom, center, style, accessToken, zoom, container])
+
+  useEffect(() => {
+    if (map && onClick) {
+      map.on('click', (e) => {
+        e.features = map.queryRenderedFeatures([e.point.x, e.point.y])
+        return onClick(e);
+      });
+    }
+  }, [map, onClick])
 
   return (
     <MapContext.Provider value={map}>
