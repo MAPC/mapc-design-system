@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faTwitter, faInstagram, IconDefinition } from '@fortawesome/free-brands-svg-icons';
 

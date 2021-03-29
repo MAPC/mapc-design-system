@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import * as React from 'react';
 import mapboxgl from 'mapbox-gl';
 import { MapContext } from './Map';
 
@@ -9,8 +9,8 @@ interface NavigationControlProps {
 const navigation = new mapboxgl.NavigationControl();
 
 export const NavigationControl: React.FC<NavigationControlProps> = ({ position = 'bottom-right' }) => {
-  const map = useContext(MapContext);
-  useEffect(() => {
+  const map = React.useContext(MapContext);
+  React.useEffect(() => {
     if (!map?.hasControl(navigation)) {
       map?.addControl(navigation, position);
     }

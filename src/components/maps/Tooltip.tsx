@@ -1,18 +1,18 @@
-import React, { ReactElement, useContext, useEffect } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import { MapContext } from './Map';
 
 interface TooltipProps {
   onLayer?: string|undefined,
-  children: ReactElement,
+  children: React.ReactElement,
 }
 
 export const Tooltip: React.FC<TooltipProps> = ({ onLayer, children }) => {
-  const map = useContext(MapContext);
+  const map = React.useContext(MapContext);
   const div = document.createElement('div');
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (onLayer) {
       map?.on('click', onLayer, (e) => {
         new mapboxgl.Popup()

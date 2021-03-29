@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { useState } from 'react';
+import * as React from 'react';
 import { css, jsx } from '@emotion/react';
 
 export interface MapLegendProps {
@@ -59,7 +59,7 @@ function setLegend(legendEntries: Array<string>, colorScale: Array<string>) {
 }
 
 export const MapLegend: React.FC<MapLegendProps> = ({ legendEntries, colorScale, title, children }) => {
-  const [isExpanded, setExpansion] = useState(true);
+  const [isExpanded, setExpansion] = React.useState(true);
   return (
     <div css={legendWrapperStyle}>
       { isExpanded ? (

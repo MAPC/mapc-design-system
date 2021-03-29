@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React from 'react';
+import * as React from 'react';
 import { css, jsx } from '@emotion/react';
 import { SocialIcon } from './SocialIcon';
 

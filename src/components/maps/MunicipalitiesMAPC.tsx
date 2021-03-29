@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
 import { Source } from './Source';
 import { Layer, LayerProps } from './Layer';
 
@@ -11,8 +11,8 @@ interface MuniMAPCProps extends LayerProps {
 }
 
 export const MunicipalitiesMAPC: React.FC<MuniMAPCProps> = ({ type, layerId, paint, data, colorScale, choroplethFunc, matchOn, mapColumn }) => {
-  const [choropleth, setChoropleth] = useState<Array<string|Array<string>>>([]);
-  useEffect(() => {
+  const [choropleth, setChoropleth] = React.useState<Array<string|Array<string>>>([]);
+  React.useEffect(() => {
     if (data) {
       const choroplethTemp = ['match', ['get', 'municipal']]
       data.forEach((row: Record<typeof matchOn | typeof mapColumn, string>) => {

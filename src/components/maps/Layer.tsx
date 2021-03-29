@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import * as React from 'react';
 import { MapContext } from './Map';
 import { SourceContext } from './Source';
 
@@ -11,10 +11,10 @@ export interface LayerProps {
 }
 
 export const Layer: React.FC<LayerProps> = ({ layerId, type, sourceLayer, paint={}, layout={} }) => {
-  const map = useContext(MapContext);
-  const source = useContext(SourceContext);
+  const map = React.useContext(MapContext);
+  const source = React.useContext(SourceContext);
 
-  useEffect(() => {
+  React.useEffect(() => {
     map?.on('styledata', (e) => {
       if (!map?.getLayer(layerId) && map?.getSource(source)) {
         map?.addLayer({

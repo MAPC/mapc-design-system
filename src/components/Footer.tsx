@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React from 'react';
+import * as React from 'react';
 import { css, jsx } from '@emotion/react';
 import { SocialNav } from './SocialNav';
 import mapc from '../assets/images/mapc-duotone.svg';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as  React from 'react';
 import duotoneLogo from '../assets/images/mapc-duotone.svg';
 import semitransparentLogo from '../assets/images/mapc-semitransparent.svg';
 import fullcolorLogo from '../assets/images/mapc-fullcolor.png';

@@ -1,13 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { ReactElement, useState } from 'react';
+import * as React from 'react';
 import { css, jsx } from '@emotion/react';
 import { MetrocommonTriangle } from './MetrocommonTriangle';
 
 export interface AccordionProps {
   triangleColor?: string,
-  title: ReactElement
+  title: React.ReactElement
 }
 
 function toggleVisibility(currentState: boolean, setActive: React.Dispatch<React.SetStateAction<boolean>>) {
@@ -44,7 +44,7 @@ const accordionDividerStyle = css`
 `;
 
 export const Accordion: React.FC<AccordionProps> = ({ triangleColor, title, children, ...props }) => {
-  const [isActive, setActive] = useState(false);
+  const [isActive, setActive] = React.useState(false);
   return (
     <div {...props}>
       <header

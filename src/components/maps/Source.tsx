@@ -1,8 +1,8 @@
+import * as React from 'react';
 import mapboxgl from 'mapbox-gl';
-import React, { createContext, useContext, useEffect } from 'react';
 import { MapContext } from './Map';
 
-export const SourceContext = createContext('')
+export const SourceContext = React.createContext('')
 
 interface SourceProps {
   sourceId: string,
@@ -20,8 +20,8 @@ function removeLayersOnSource(map: mapboxgl.Map, source: string) {
 }
 
 export const Source: React.FC<SourceProps> = ({ sourceId, url, children }) => {
-  const map = useContext(MapContext);
-  useEffect(() => {
+  const map = React.useContext(MapContext);
+  React.useEffect(() => {
     if (map?.loaded()) {
       map?.addSource(sourceId, {
         type: 'vector',

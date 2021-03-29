@@ -1,11 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 
-import React, { useEffect, useRef, useState, createContext } from 'react';
+import * as React from 'react';
 import { css, jsx } from '@emotion/react';
 import mapboxgl from 'mapbox-gl';
 
-export const MapContext = createContext<mapboxgl.Map|null>(null);
+export const MapContext = React.createContext<mapboxgl.Map|null>(null);
 
 export interface MapProps {
   container: string,
@@ -33,9 +33,9 @@ export const Map: React.FC<MapProps> = ({
   onClick,
   children
 }) => {
-  const mapRef = useRef(null);
-  const [map, setMap] = useState<mapboxgl.Map|null>(null)
-  useEffect(() => {
+  const mapRef = React.useRef(null);
+  const [map, setMap] = React.useState<mapboxgl.Map|null>(null)
+  React.useEffect(() => {
     if (!map) {
       let mapObj = new mapboxgl.Map({
         container,
@@ -56,7 +56,7 @@ export const Map: React.FC<MapProps> = ({
     }
   }, [map, minZoom, maxZoom, center, style, accessToken, zoom, container])
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (map && onClick) {
       map.on('click', (e) => {
         e.features = map.queryRenderedFeatures([e.point.x, e.point.y])
