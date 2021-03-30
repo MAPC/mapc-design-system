@@ -1,7 +1,7 @@
 {
   "name": "mapc-design-system",
   "author": "MAPC Digital Services",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,8 +11,12 @@
   "license": "CDDL-1.0",
   "babel": {
     "presets": [
-      "react-app",
-      "@babel/preset-react"
+      [
+        "react-app",
+        {
+          "absoluteRuntime": false
+        }
+      ]
     ],
     "plugins": [
       [
