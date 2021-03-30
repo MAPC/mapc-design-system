@@ -1,7 +1,7 @@
 {
   "name": "mapc-design-system",
   "author": "MAPC Digital Services",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -55,6 +55,7 @@
     ]
   },
   "dependencies": {
+    "@babel/runtime": "^7.13.10",
     "@emotion/react": "^11.1.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
