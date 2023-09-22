@@ -2,7 +2,6 @@
   "name": "mapc-design-system",
   "author": "MAPC Digital Services",
   "version": "0.3.5",
-  "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -36,14 +35,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -o docs -s ./src/assets",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "compile": "tsc && rm -rf dist && mkdir dist && NODE_ENV=production babel src --out-dir dist --extensions .ts,.tsx && mkdir -p ./dist/assets/images && cp -a ./src/assets/images ./dist/assets/"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended"
     ]
   },
   "browserslist": {
@@ -59,40 +59,57 @@
     ]
   },
   "dependencies": {
+    "@babel/core": "^7.22.20",
     "@babel/runtime": "^7.13.10",
     "@emotion/react": "^11.1.4",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/react-fontawesome": "^0.1.14",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.53",
-    "@types/react-dom": "^16.9.8",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@testing-library/dom": "^9.3.3",
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.6.3",
+    "@types/react": "^18.2.22",
+    "@types/react-dom": "^18.2.7",
     "mapbox-gl": "^2.1.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "typescript": "^4.0.3",
-    "web-vitals": "^0.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^5.2.2",
+    "web-vitals": "^3.4.0",
     "worker-loader": "^3.0.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-react": "^7.12.10",
-    "@storybook/addon-actions": "^6.1.15",
-    "@storybook/addon-essentials": "^6.1.15",
-    "@storybook/addon-links": "^6.1.15",
-    "@storybook/node-logger": "^6.1.15",
-    "@storybook/preset-create-react-app": "^3.1.5",
-    "@storybook/react": "^6.1.15",
-    "@types/mapbox-gl": "^2.1.0"
+    "@storybook/addon-actions": "^7.4.4",
+    "@storybook/addon-docs": "^7.4.4",
+    "@storybook/addon-essentials": "^7.4.4",
+    "@storybook/addon-interactions": "^7.4.4",
+    "@storybook/addon-links": "^7.4.4",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.4.4",
+    "@storybook/node-logger": "^7.4.4",
+    "@storybook/preset-create-react-app": "^7.4.4",
+    "@storybook/react": "^7.4.4",
+    "@storybook/react-webpack5": "^7.4.4",
+    "@storybook/testing-library": "^0.2.1",
+    "@types/mapbox-gl": "^2.1.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "eslint": "^8.50.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-storybook": "^0.6.14",
+    "prop-types": "^15.8.1",
+    "storybook": "^7.4.4",
+    "webpack": "^5.88.2"
   },
   "repository": {
     "url": "https://github.com/MAPC/mapc-design-system",
     "type": "git"
-  }
+  },
+  "packageManager": "yarn@3.6.3"
 }
