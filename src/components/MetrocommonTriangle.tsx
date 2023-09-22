@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { PropsWithChildren } from 'react';
+import { css, jsx } from '@emotion/react';
 
-export interface MetrocommonTriangleProps {
+export type MetrocommonTriangleProps = React.PropsWithChildren & {
   color: string|undefined,
 }
 

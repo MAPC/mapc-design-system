@@ -2,10 +2,11 @@
 /** @jsx jsx */
 
 import * as React from 'react';
+import { PropsWithChildren } from 'react';
 import { css, jsx } from '@emotion/react';
 import { MetrocommonTriangle } from './MetrocommonTriangle';
 
-export interface AccordionProps {
+export type AccordionProps = React.PropsWithChildren & {
   triangleColor?: string,
   title: React.ReactElement
 }
