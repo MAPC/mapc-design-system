@@ -6,7 +6,7 @@ import { PropsWithChildren } from 'react';
 import { css, jsx } from '@emotion/react';
 import { MetrocommonTriangle } from './MetrocommonTriangle';
 
-// Need to use an intersection type so we can use React "children" props 
+// Need to use an intersection type so we can use "children" props 
 export type AccordionProps = React.PropsWithChildren & {
   triangleColor?: string,
   title: React.ReactElement
