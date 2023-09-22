@@ -19,3 +19,4 @@ jobs:
         with:
           folder: storybook-static # The folder that the build-storybook script generates files.
           clean: true # Automatically remove deleted files from the deploy branch
+          target-folder: docs # This is the directory gh-pages is expecting
