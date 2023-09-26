@@ -4,7 +4,7 @@ import Overlay from "react-bootstrap/Overlay";
 import Button from "react-bootstrap/Button";
 
 const OverlayDiv = styled.div`
-  background-color: #dceef6;
+  background-color: #e7f0f3;
   width: 20vw;
   height: 85vh;
   position: absolute !important;
@@ -20,15 +20,14 @@ const OverlayDiv = styled.div`
 const OverlayTitle = styled.h4`
   color: #635c7b;
   font-weight: bold;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   padding: 0.5rem;
   margin: 0;
 `;
 
 const OverlayStyleBar = styled.div`
   width: 100%;
-  background-color: #196197;
-  margin-top: 0.5rem;
+  background-color: #c3d8e8;
   height: 0.15rem;
 `;
 
@@ -114,13 +113,15 @@ export const UserDropdown = ({
           <OverlayTitle>{name}</OverlayTitle>
           <OverlayStyleBar />
           <OverlayUl>{generateLinks()}</OverlayUl>
-          <Button
-            onClick={() => {
-              logoutFunction();
-            }}
-          >
-            Logout
-          </Button>
+          {logout && (
+            <Button
+              onClick={() => {
+                logoutFunction();
+              }}
+            >
+              Logout
+            </Button>
+          )}
         </OverlayDiv>
       )}
     </Overlay>

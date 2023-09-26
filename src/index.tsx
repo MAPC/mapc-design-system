@@ -13,6 +13,7 @@ import { MunicipalitiesMAPC } from "./components/maps/MunicipalitiesMAPC";
 import { Tooltip } from "./components/maps/Tooltip";
 import { MapLegend } from "./components/maps/MapLegend";
 import { UserDropdown } from "./components/UserDropdown";
+import { TabularView } from "./components/TabularView";
 
 export {
   Footer,
@@ -29,4 +30,5 @@ export {
   Tooltip,
   MapLegend,
   UserDropdown,
+  TabularView,
 };
