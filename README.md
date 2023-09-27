@@ -19,6 +19,7 @@ To create a new component, you must include:
 - `component.tsx` : code for component
 - `component.stories.tsx` : meta data for component, and different stories to test the component (needs to be a tsx file for react storybook decorators)
 - (optional) `styling.css` : a file containing the styling for the component
+- add component to index.tsx
 
 ## Testing
 
