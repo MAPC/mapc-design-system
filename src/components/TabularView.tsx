@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 const DataTabularContainerDiv = styled.div`
@@ -114,7 +113,7 @@ const DataTabularListAlignItem = styled.div<styledWidthProps>`
 interface ViewProps {
   fields: string[];
   data: { [key: string]: number | string }[];
-  searchTerm?: string;
+  searchTerm?: string | undefined;
 }
 
 export type DataSortType = {
@@ -161,9 +160,10 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
         const recordFields: elementsArray = [];
 
         if (
-          searchTerm === null ||
-          searchTerm === "" ||
-          Object.values(element).toString().toLowerCase().includes(searchTerm.toLowerCase())
+          searchTerm !== undefined &&
+          (searchTerm === null ||
+            searchTerm === "" ||
+            Object.values(element).toString().toLowerCase().includes(searchTerm.toLowerCase()))
         ) {
           fields.forEach((field) => {
             recordFields.push(
