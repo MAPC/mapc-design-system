@@ -3,19 +3,14 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "esModuleInterop": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ],
+    "lib": ["dom", "es2015"],
     "moduleResolution": "node",
     "outDir": "./dist",
     "resolveJsonModule": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2019",
-    "types": [
-      "@emotion/core"
-    ],
+    "types": ["@emotion/core"],
     "files": ["node_modules/@emotion/react/types/css-prop"],
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
@@ -27,11 +22,6 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "src/stories",
-    "src/assets"
-  ]
+  "include": ["src"],
+  "exclude": ["src/stories", "src/assets"]
 }
