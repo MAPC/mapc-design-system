@@ -1,7 +1,8 @@
-import React, { useState, useEffect, ReactElement } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 const DataTabularContainerDiv = styled.div`
   width: 100%;
@@ -69,7 +70,7 @@ const DataTabularList = styled.div`
   display: flex;
   flex-direction: row;
   color: #635c7b;
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
   justify-content: start;
   align-items: center;
 `;
@@ -113,7 +114,7 @@ const DataTabularListAlignItem = styled.div<styledWidthProps>`
 interface ViewProps {
   fields: string[];
   data: { [key: string]: number | string }[];
-  searchTerm: string;
+  searchTerm?: string;
 }
 
 export type DataSortType = {
@@ -125,35 +126,58 @@ export type elementsArray = React.ReactElement[];
 
 export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
   const [dataElements, setDataElements] = useState<elementsArray>([]);
-  const [sortMethod, setSortMethod] = useState<DataSortType>({ sortSubject: "ask", sortType: "asc" });
+  const [sortMethod, setSortMethod] = useState<DataSortType>({ sortSubject: "", sortType: "asc" });
 
   useEffect(() => {
     function generateData() {
       // generate table data items, update table items on (new data, sort method, and search term)
       const tempArray: elementsArray = [];
 
+      data.sort((a, b) => {
+        if (sortMethod.sortType === "asc") {
+          if (a[sortMethod.sortSubject] < b[sortMethod.sortSubject]) {
+            return -1;
+          }
+          if (a[sortMethod.sortSubject] > b[sortMethod.sortSubject]) {
+            return 1;
+          }
+          return 0;
+        } else if (sortMethod.sortType === "desc") {
+          if (a[sortMethod.sortSubject] < b[sortMethod.sortSubject]) {
+            return 1;
+          }
+          if (a[sortMethod.sortSubject] > b[sortMethod.sortSubject]) {
+            return -1;
+          }
+          return 0;
+        } else if (sortMethod.sortType === "none") {
+          return 0;
+        }
+        return 0;
+      });
+
       data.forEach((element) => {
         // append to table if the search term is null or search term is in one of the fields
         const recordFields: elementsArray = [];
-        fields.forEach((field) => {
-          if (
-            searchTerm === null ||
-            searchTerm === "" ||
-            String(element[field]).toLowerCase().includes(searchTerm.toLowerCase())
-          ) {
+
+        if (
+          searchTerm === null ||
+          searchTerm === "" ||
+          Object.values(element).toString().toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          fields.forEach((field) => {
             recordFields.push(
               <DataTabularListAlignItem itemType={String((1.0 / fields.length) * 100) + "%"}>
                 {element[field]}
               </DataTabularListAlignItem>
             );
-          }
-        });
-
-        tempArray.push(
-          <DataTabularListItem>
-            <DataTabularListAlign>{recordFields}</DataTabularListAlign>
-          </DataTabularListItem>
-        );
+          });
+          tempArray.push(
+            <DataTabularListItem>
+              <DataTabularListAlign>{recordFields}</DataTabularListAlign>
+            </DataTabularListItem>
+          );
+        }
       });
 
       if (tempArray.length === 0) {
@@ -186,6 +210,7 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
           ? "asc"
           : "asc",
     });
+    console.log(sortMethod);
   }
 
   function generateTableHead() {
@@ -200,10 +225,10 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
             setSorting(element);
           }}
         >
+          <strong style={{ cursor: "pointer" }}>{element}</strong>{" "}
           {sortMethod.sortSubject === element &&
-            ((sortMethod.sortType === "asc" && <FontAwesomeIcon icon={"fa-solid fa-caret-up" as IconProp} />) ||
-              (sortMethod.sortType === "desc" && <FontAwesomeIcon icon={"fa-solid fa-caret-down" as IconProp} />))}
-          <strong style={{ cursor: "pointer" }}>{element}</strong>
+            ((sortMethod.sortType === "asc" && <FontAwesomeIcon icon={faCaretUp} />) ||
+              (sortMethod.sortType === "desc" && <FontAwesomeIcon icon={faCaretDown} />))}
         </DataTabularListAlignItem>
       );
     });
