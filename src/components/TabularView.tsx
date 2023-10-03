@@ -50,14 +50,13 @@ const DataTabularContainerBodyDiv = styled.div`
   /* Handle */
   &::-webkit-scrollbar-thumb {
     background: #fbfffe;
-    margin: 0.1rem
-    border-radius: 4px;
+    margin: 0.1rem;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
     background: #e2f4ff;
-    
+    border-radius: 2px;
   }
 `;
 
@@ -237,15 +236,13 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
   }
 
   return (
-    <div>
-      <DataTabularContainerDiv>
-        <DataTabularContainerTopDiv>
-          <DataTabularList>
-            <DataTabularListAlign>{generateTableHead()}</DataTabularListAlign>
-          </DataTabularList>
-        </DataTabularContainerTopDiv>
-        <DataTabularContainerBodyDiv> {dataElements} </DataTabularContainerBodyDiv>
-      </DataTabularContainerDiv>
-    </div>
+    <DataTabularContainerDiv>
+      <DataTabularContainerTopDiv>
+        <DataTabularList>
+          <DataTabularListAlign>{generateTableHead()}</DataTabularListAlign>
+        </DataTabularList>
+      </DataTabularContainerTopDiv>
+      <DataTabularContainerBodyDiv> {dataElements} </DataTabularContainerBodyDiv>
+    </DataTabularContainerDiv>
   );
 };

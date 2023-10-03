@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
 import { TabularView } from "../components/TabularView";
 
@@ -34,4 +35,11 @@ export const ViewText: Story = {
 
 export const ViewCost: Story = {
   args: { fields: ["title", "price", "signature", "price2", "signature2"], data: testDataCost, searchTerm: "" },
+  decorators: [
+    (Story) => (
+      <div style={{ height: "15rem" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
