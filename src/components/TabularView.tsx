@@ -13,7 +13,7 @@ const DataTabularContainerDiv = styled.div`
 const DataTabularContainerTopDiv = styled.div`
   width: 100%;
   padding: 0 2.75rem 0 1rem;
-  background-color: #ddf4ff;
+  background-color: ${(props) => (props.theme.primaryColor !== undefined ? props.theme.primaryColor : "#ddf4ff")};
   border-radius: 5px 5px 0px 0px;
   box-sizing: border-box;
 `;
@@ -23,12 +23,22 @@ const DataTabularContainerBodyDiv = styled.div`
   height: 80%;
   box-sizing: border-box;
 
-  background-color: #b9e2ff;
+  background-color: ${(props) =>
+    props.theme.secondaryColor !== undefined
+      ? props.theme.secondaryColor
+      : props.theme.primaryColor !== undefined
+      ? props.theme.primaryColor
+      : "#b9e2ff"};
   border-radius: 0px 0px 5px 5px;
   border-top-style: solid;
   border-bottom-style: solid;
   border-right-style: solid;
-  border-color: #b9e2ff;
+  border-color: ${(props) =>
+    props.theme.secondaryColor !== undefined
+      ? props.theme.secondaryColor
+      : props.theme.primaryColor !== undefined
+      ? props.theme.primaryColor
+      : "#b9e2ff"};
   border-width: 0.4rem;
 
   padding: 1rem;
@@ -43,19 +53,24 @@ const DataTabularContainerBodyDiv = styled.div`
 
   /* Track */
   &::-webkit-scrollbar-track {
-    background-color: #68a4dd;
+    background-color: ${(props) =>
+      props.theme.tertiaryColor !== undefined
+        ? props.theme.tertiaryColor
+        : props.theme.primaryColor !== undefined
+        ? props.theme.primaryColor
+        : "#68a4dd"};
     border-radius: 4px;
   }
 
   /* Handle */
   &::-webkit-scrollbar-thumb {
-    background: #fbfffe;
+    background: ${(props) => (props.theme.backgroundColor !== undefined ? props.theme.backgroundColor : "#fbfffe")};
     margin: 0.1rem;
   }
 
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover {
-    background: #e2f4ff;
+    background: ${(props) => (props.theme.primaryColor !== undefined ? props.theme.primaryColor : "#e2f4ff")};
     border-radius: 2px;
   }
 `;
@@ -67,17 +82,22 @@ const DataTabularList = styled.div`
 
   display: flex;
   flex-direction: row;
-  color: #635c7b;
+  color: ${(props) =>
+    props.theme.tertiaryColor !== undefined
+      ? props.theme.tertiaryColor
+      : props.theme.primaryColor !== undefined
+      ? props.theme.primaryColor
+      : "#635c7b"};
   /* padding: 1.5rem; */
   justify-content: start;
   align-items: center;
 `;
 
 const DataTabularListItem = styled(DataTabularList)`
-  background-color: #fbfffe;
+  background-color: ${(props) => (props.theme.backgroundColor !== undefined ? props.theme.backgroundColor : "#fbfffe")};
   margin-bottom: 0.65rem;
   &:hover {
-    background-color: #ddf4ff;
+    background-color: ${(props) => (props.theme.primaryColor !== undefined ? props.theme.primaryColor : "#fbfffe")};
   }
 `;
 
@@ -113,6 +133,7 @@ interface ViewProps {
   fields: string[];
   data: { [key: string]: number | string }[];
   searchTerm?: string | undefined;
+  theme?: { backgroundColor: string; primaryColor: string; secondaryColor: string; tertiaryColor: string };
 }
 
 export type DataSortType = {
@@ -122,10 +143,9 @@ export type DataSortType = {
 
 export type elementsArray = React.ReactElement[];
 
-export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
+export const TabularView = ({ fields, data, searchTerm, theme }: ViewProps) => {
   const [dataElements, setDataElements] = useState<elementsArray>([]);
   const [sortMethod, setSortMethod] = useState<DataSortType>({ sortSubject: "", sortType: "asc" });
-
   useEffect(() => {
     function generateData() {
       // generate table data items, update table items on (new data, sort method, and search term)
@@ -166,14 +186,14 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
         ) {
           fields.forEach((field) => {
             recordFields.push(
-              <DataTabularListAlignItem itemType={String((1.0 / fields.length) * 100) + "%"}>
+              <DataTabularListAlignItem itemType={String((1.0 / fields.length) * 100) + "%"} theme={theme}>
                 {element[field]}
               </DataTabularListAlignItem>
             );
           });
           tempArray.push(
-            <DataTabularListItem>
-              <DataTabularListAlign>{recordFields}</DataTabularListAlign>
+            <DataTabularListItem theme={theme}>
+              <DataTabularListAlign theme={theme}>{recordFields}</DataTabularListAlign>
             </DataTabularListItem>
           );
         }
@@ -182,9 +202,9 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
       if (tempArray.length === 0) {
         // if table is empty, show default item
         tempArray.push(
-          <DataTabularListItem key={"default"}>
-            <DataTabularListAlign>
-              <DataTabularListAlignItem>
+          <DataTabularListItem key={"default"} theme={theme}>
+            <DataTabularListAlign theme={theme}>
+              <DataTabularListAlignItem theme={theme}>
                 No Items found. Please try a different filter or search term.
               </DataTabularListAlignItem>
             </DataTabularListAlign>
@@ -196,7 +216,7 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
     }
 
     generateData();
-  }, [data, sortMethod, searchTerm, fields]);
+  }, [data, sortMethod, searchTerm, fields, theme]);
 
   function setSorting(subject: string) {
     // update sorting based on clicked subject
@@ -223,6 +243,7 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
           onClick={() => {
             setSorting(element);
           }}
+          theme={theme}
         >
           <strong style={{ cursor: "pointer" }}>{element}</strong>{" "}
           {sortMethod.sortSubject === element &&
@@ -236,13 +257,13 @@ export const TabularView = ({ fields, data, searchTerm }: ViewProps) => {
   }
 
   return (
-    <DataTabularContainerDiv>
-      <DataTabularContainerTopDiv>
-        <DataTabularList>
-          <DataTabularListAlign>{generateTableHead()}</DataTabularListAlign>
+    <DataTabularContainerDiv theme={theme}>
+      <DataTabularContainerTopDiv theme={theme}>
+        <DataTabularList theme={theme}>
+          <DataTabularListAlign theme={theme}>{generateTableHead()}</DataTabularListAlign>
         </DataTabularList>
       </DataTabularContainerTopDiv>
-      <DataTabularContainerBodyDiv> {dataElements} </DataTabularContainerBodyDiv>
+      <DataTabularContainerBodyDiv theme={theme}> {dataElements} </DataTabularContainerBodyDiv>
     </DataTabularContainerDiv>
   );
 };
