@@ -4,7 +4,7 @@ import Overlay from "react-bootstrap/Overlay";
 import Button from "react-bootstrap/Button";
 
 const OverlayDiv = styled.div`
-  background-color: #e7f0f3;
+  background-color: ${(props) => (props.theme.backgroundColor !== undefined ? props.theme.backgroundColor : "#e7f0f3")};
   width: 20vw;
   height: 85vh;
   position: absolute !important;
@@ -13,12 +13,23 @@ const OverlayDiv = styled.div`
 
   padding: 1.5rem;
   border-radius: 5px;
-  box-shadow: 0px 3px 5px 0px #2b3b5e;
+  box-shadow: 0px 3px 5px 0px
+    ${(props) =>
+      props.theme.tertiaryColor !== undefined
+        ? props.theme.tertiaryColor
+        : props.theme.primaryColor !== undefined
+        ? props.theme.primaryColor
+        : "#2b3b5e"};
   font-size: 1.25rem;
 `;
 
 const OverlayTitle = styled.h4`
-  color: #635c7b;
+  color: ${(props) =>
+    props.theme.secondaryColor !== undefined
+      ? props.theme.secondaryColor
+      : props.theme.primaryColor !== undefined
+      ? props.theme.primaryColor
+      : "#635c7b"};
   font-weight: bold;
   font-size: 1.5rem;
   padding: 0.5rem;
@@ -27,7 +38,12 @@ const OverlayTitle = styled.h4`
 
 const OverlayStyleBar = styled.div`
   width: 100%;
-  background-color: #c3d8e8;
+  background-color: ${(props) =>
+    props.theme.secondaryColor !== undefined
+      ? props.theme.secondaryColor
+      : props.theme.primaryColor !== undefined
+      ? props.theme.primaryColor
+      : "#c3d8e8"};
   height: 0.15rem;
 `;
 
@@ -45,15 +61,30 @@ const OverlayLi = styled.li`
   border-radius: 5px;
 
   &:hover {
-    background-color: #c7e3f0;
+    background-color: ${(props) =>
+      props.theme.secondaryColor !== undefined
+        ? props.theme.secondaryColor
+        : props.theme.primaryColor !== undefined
+        ? props.theme.primaryColor
+        : "#c7e3f0"};
   }
 `;
 
 const OverlayAnchor = styled.div`
   text-decoration: none;
-  color: #7e7697;
+  color: ${(props) =>
+    props.theme.tertiaryColor !== undefined
+      ? props.theme.tertiaryColor
+      : props.theme.primaryColor !== undefined
+      ? props.theme.primaryColor
+      : "#7e7697"};
   &:hover {
-    color: #4d475f;
+    color: ${(props) =>
+      props.theme.tertiaryColor !== undefined
+        ? props.theme.tertiaryColor
+        : props.theme.primaryColor !== undefined
+        ? props.theme.primaryColor
+        : "#4d475f"};
   }
 `;
 
@@ -68,6 +99,7 @@ interface DropdownProps {
   logout?: boolean;
   logoutFunction: () => void;
   target: MutableRefObject<HTMLDivElement> | undefined;
+  theme?: { backgroundColor: string; primaryColor: string; secondaryColor: string; tertiaryColor: string };
 }
 
 export const UserDropdown = ({
@@ -77,15 +109,16 @@ export const UserDropdown = ({
   logout = false,
   logoutFunction,
   target,
+  theme,
 }: DropdownProps) => {
   function generateLinks() {
     const tempArray: React.ReactElement[] = [];
 
     Object.keys(links).forEach((element: string) => {
       tempArray.push(
-        <OverlayLi key={element}>
+        <OverlayLi key={element} theme={theme}>
           <NavLink href={links[element as keyof object]}>
-            <OverlayAnchor> {element} </OverlayAnchor>
+            <OverlayAnchor theme={theme}> {element} </OverlayAnchor>
           </NavLink>
         </OverlayLi>
       );
@@ -109,15 +142,16 @@ export const UserDropdown = ({
         hasDoneInitialMeasure: _hasDoneInitialMeasure,
         ...props
       }) => (
-        <OverlayDiv {...props}>
-          <OverlayTitle>{name}</OverlayTitle>
-          <OverlayStyleBar />
+        <OverlayDiv {...props} theme={theme}>
+          <OverlayTitle theme={theme}>{name}</OverlayTitle>
+          <OverlayStyleBar theme={theme} />
           <OverlayUl>{generateLinks()}</OverlayUl>
           {logout && (
             <Button
               onClick={() => {
                 logoutFunction();
               }}
+              style={{ backgroundColor: theme?.primaryColor }}
             >
               Logout
             </Button>

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import { sunTheme, turquoiseTheme, fuchsiaTheme, grayTheme } from "../assets/themes";
+import { sunTheme, turquoiseTheme, fuchsiaTheme, skyTheme } from "../assets/themes";
 import { TabularView } from "../components/TabularView";
 
 const meta = {
@@ -39,7 +39,7 @@ export const ViewCost: Story = {
     fields: ["title", "price", "signature", "price2", "signature2"],
     data: testDataCost,
     searchTerm: "",
-    theme: turquoiseTheme,
+    theme: skyTheme,
   },
   decorators: [
     (Story) => (

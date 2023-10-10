@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { UserDropdown } from "../components/UserDropdown";
+import { sunTheme } from "../assets/themes";
 
 const meta = {
   title: "components/User Dropdown",
@@ -22,6 +23,7 @@ export const DropdownOpen: Story = {
     logout: true,
     logoutFunction: handle,
     target: undefined,
+    theme: sunTheme,
   },
 };
 
@@ -33,5 +35,6 @@ export const DropdownClosed: Story = {
     logout: true,
     logoutFunction: handle,
     target: undefined,
+    theme: sunTheme,
   },
 };
